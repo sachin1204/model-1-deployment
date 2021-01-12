@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Fraud Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <style>
+  body {
+    font: 20px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #f5f6f7;
+  }
+  p {font-size: 16px;}
+  .margin {margin-bottom: 45px;}
+  .bg-1 { 
+    background-color:rgb(216, 122, 14); /*  */
+    color: black;
+    text-align: left;
+
+  }
+  .bg-2 { 
+    background-color: #020202; /* Dark Blue */
+    color: #ffffff;
+  }
+  .bg-3 { 
+    background-color: #ffffff; /* White */
+    color: #555555;
+  }
+  .bg-4 { 
+    background-color: #2f2f2f; /* Black Gray */
+    color: #fff;
+  }
+  .container-fluid {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+  }
+  .navbar-nav  li a:hover {
+    color: #1abc9c !important;
+  }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-default bg-4">
+  <div class="container">
+    <div class="navbar-header">
+      
+      <h2>BANK CHURN MODEL</h2>
+    </div>
+    
+  </div>
+</nav>
+
+<!-- First Container -->
+<div class="container-fluid bg-1 text-center">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8"><p>Bank Churn portal: Kindly input all variales relevant to The Bank</p></div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+  <form action="{{ url_for('predict')}}"method="post">
+
+
+
+     <div class="form-group">
+      <label for="CreditScore">CreditScore</label>
+      <br>
+      <input class="input100" type="text" id="CreditScore" name="CreditScore" placeholder="Please enter Valid CreditScore" required="required">
+    </div>
+
+  <div class="form-group">
+  <label for="Geography">Select Geography </label>
+  <br>
+  <select  class="input100" id="Geography" name="Geography" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+    <option value="">Select Geography</option>
+    <option value="0">France</option>
+    <option value="1">Spain</option>
+    <option value="2">Germany</option>
+
+  </select>
+  </div>
+
+
+
+  <div class="form-group">
+  <label for="Gender">Select Gender</label>
+  <br>
+  <select class="input100"  id="Gender" name="Gender" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+    <option value="">Select Gender</option>
+    <option value="0">male</option>
+    <option value="1">female</option>
+  
+  </select>
+  </div>
+
+
+
+  <div class="form-group">
+    <br>
+    <label for="Age">Enter Age </label>
+    <br>
+    <input class="input100" type="text" id="Age" name="Age" placeholder="Age ex: 12" required="required">
+  </div>
+
+
+  <div class="form-group">
+    <label for="Tenure">Enter Tenure</label>
+    <br>
+    <input class="input100" type="text" id="Tenure" name="Tenure" placeholder="Enter Tenure between 0 to 10" required="required">
+  </div>
+
+<div class="form-group">
+    <label for="Balance">Enter Balance</label>
+    <br>
+    <input class="input100" type="text" id="Balance" name="Balance" placeholder="enter valid balance" required="required">
+  </div>
+  
+ <div class="form-group">
+  <label for="NumOfProducts">Select NumOfProducts</label>
+  <br>
+  <select class="input100"  id="NumOfProducts" name="NumOfProducts" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+    <option value="">Select NumOfProducts</option>
+    <option value="0">1</option>
+    <option value="1">2</option>
+	<option value="0">3</option>
+    <option value="1">4</option>
+  
+  </select>
+  </div>
+  
+  <div class="form-group">
+  <label for="HasCrCard">Select HasCrCard</label>
+  <br>
+  <select class="input100"  id="HasCrCard" name="HasCrCard" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+    <option value="">Select HasCrCard</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+  
+  </select>
+  </div>
+  
+  <div class="form-group">
+  <label for="IsActiveMember">Select customer is active or not</label>
+  <br>
+  <select class="input100"  id="IsActiveMember" name="IsActiveMember" style="padding: 10px 5px;margin-top: 15px;border: 2px solid #d9d9d9;" >
+    <option value="">Select active member or not</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+  
+  </select>
+  </div>
+  
+  <div class="form-group">
+    <label for="EstimatedSalary">Enter Estimated Salary</label>
+    <br>
+    <input class="input100" type="text" id="EstimatedSalary" name="EstimatedSalary" placeholder="enter valid estimated salary" required="required">
+  </div>
+
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    <button type="submit" class="btn btn-primary btn-block btn-large">Prediction</button>
+  </form>
+  {{ prediction_text }}
+</div>
+<div class="col-md-4"></div>
+</div>
+</div>
+
+
+<!-- Footer -->
+<footer class="container-fluid bg-4 text-center">
+  <p>Thanks to <a href="https://www.boardinfinity.com">BoardInfinity</a></p>
+  <p class='footer-description'>❤️ ❤️ ❤️</p>
+  <div class="contact" >
+    <a target="_blank" href="https://github.com/sachin1204"><i class="fab fa-github fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+    <a target="_blank" href="https://www.linkedin.com/in/sachin-gupta-81369710b/"><i class="fab fa-linkedin fa-lg contact-icon" style="color:blanchedalmond !important"></i></a>
+</div>
+   
+  
+</footer>
+
+
+
+</body>
+</html>
